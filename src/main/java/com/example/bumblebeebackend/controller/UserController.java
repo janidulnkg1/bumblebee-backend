@@ -1,5 +1,6 @@
 package com.example.bumblebeebackend.controller;
 
+import com.example.bumblebeebackend.exception.UserNotFoundException;
 import com.example.bumblebeebackend.repository.UserRepository;
 import com.example.bumblebeebackend.model.User;
 
@@ -37,6 +38,15 @@ public class UserController {
     @GetMapping("/users")
     List<User> getAllUsers(){
         return userRepository.findAll();
+    }
+
+    @DeleteMapping("/user/{id}")
+    String deleteUser(@PathVariable Long id){
+        if(!userRepository.existsById(id)){
+            throw new UserNotFoundException(id);
+        }
+        userRepository.deleteById(id);
+        return "User with id "+id+" has been deleted!";
     }
 
 }
