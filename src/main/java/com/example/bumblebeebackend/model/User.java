@@ -3,8 +3,10 @@ package com.example.bumblebeebackend.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+
 public class User {
 
     @Id
@@ -46,6 +48,16 @@ public class User {
     private String email;
 
     private String firstName;
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    private String password;
 
     private String lastName;
 }
