@@ -1,39 +1,35 @@
 package com.example.bumblebeebackend.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 public class Admin {
 
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "my_entity_seq")
+    @SequenceGenerator(name = "my_entity_seq", sequenceName = "MY_ENTITY_SEQ", initialValue = 0, allocationSize = 1)
+
+
     @Id
-    @GeneratedValue
-    private Long adminid;
+    private Long adminId;
 
-    public Long getId() {
-        return adminid;
+    private String firstname;
+
+    private String lastName;
+
+    public Long getAdminId() {
+        return adminId;
     }
 
-    public void setId(Long id) {
-        this.adminid = id;
+    public void setAdminId(Long adminId) {
+        this.adminId = adminId;
     }
 
-    public String getEmail() {
-        return email;
+    public String getFirstname() {
+        return firstname;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
 
     public String getLastName() {
@@ -44,9 +40,13 @@ public class Admin {
         this.lastName = lastName;
     }
 
-    private String email;
+    public String getEmail() {
+        return email;
+    }
 
-    private String firstName;
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public String getPassword() {
         return password;
@@ -56,8 +56,9 @@ public class Admin {
         this.password = password;
     }
 
+    private String email;
+
     private String password;
-
-    private String lastName;
-
 }
+
+
