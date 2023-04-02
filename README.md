@@ -1,5 +1,5 @@
 # bumblebee-backend
-This is the backend code part of 
+This is the backend code part of Bumblebee ecommerce / loan providing web application.
 
 ## Technologies Used
 
