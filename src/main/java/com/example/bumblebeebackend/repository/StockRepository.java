@@ -1,4 +1,7 @@
 package com.example.bumblebeebackend.repository;
 
-public interface StockRepository {
+import com.example.bumblebeebackend.model.Stock;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface StockRepository extends JpaRepository<Stock,Long> {
 }
