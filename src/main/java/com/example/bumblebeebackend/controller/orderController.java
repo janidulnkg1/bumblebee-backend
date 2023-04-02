@@ -2,9 +2,9 @@ package com.example.bumblebeebackend.controller;
 
 import com.example.bumblebeebackend.exception.OrderNotFoundException;
 
-import com.example.bumblebeebackend.model.Stock;
-import com.example.bumblebeebackend.repository.OrderRepository;
-import com.example.bumblebeebackend.model.Order;
+
+import com.example.bumblebeebackend.repository.CustomerOrderRepository;
+import com.example.bumblebeebackend.model.customerOrder;
 
 import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,17 +19,17 @@ import java.util.List;
 public class orderController {
 
     @Autowired
-    private OrderRepository orderRepository;
+    private CustomerOrderRepository customerOrderRepository;
 
     @PostMapping("/addorder")
-    public ResponseEntity<String> apply(@RequestBody Order order){
-        orderRepository.save(order);
+    public ResponseEntity<String> apply(@RequestBody customerOrder customerorder){
+        customerOrderRepository.save(customerorder);
         return ResponseEntity.ok("Order has been added successfully!");
     }
 
     @GetMapping("/orders")
-    List<Order> getAllOrders() {
+    List<customerOrder> getAllOrders() {
 
-        return orderRepository.findAll();
+        return customerOrderRepository.findAll();
     }
 }

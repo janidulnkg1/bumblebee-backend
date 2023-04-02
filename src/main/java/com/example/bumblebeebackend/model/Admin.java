@@ -6,13 +6,13 @@ import javax.persistence.*;
 public class Admin {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "my_entity_seq")
-    @SequenceGenerator(name = "my_entity_seq", sequenceName = "MY_ENTITY_SEQ", initialValue = 0, allocationSize = 1)
+    @SequenceGenerator(name = "my_entity_seq", sequenceName = "MY_ENTITY_SEQ", initialValue = 2000, allocationSize = 1)
 
 
     @Id
     private Long adminId;
 
-    private String firstname;
+    private String firstName;
 
     private String lastName;
 
@@ -24,12 +24,12 @@ public class Admin {
         this.adminId = adminId;
     }
 
-    public String getFirstname() {
-        return firstname;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public String getLastName() {
