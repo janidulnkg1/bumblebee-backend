@@ -5,11 +5,8 @@ import javax.persistence.*;
 @Entity
 public class Admin {
 
-    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "my_entity_seq")
-    @SequenceGenerator(name = "my_entity_seq", sequenceName = "MY_ENTITY_SEQ", initialValue = 2000, allocationSize = 1)
-
-
     @Id
+    @GeneratedValue(strategy=GenerationType.TABLE)
     private Long adminId;
 
     private String firstName;

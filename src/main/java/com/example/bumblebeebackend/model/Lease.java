@@ -7,8 +7,7 @@ import java.util.Date;
 public class Lease {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "my_entity_seq")
-    @SequenceGenerator(name = "my_entity_seq", sequenceName = "MY_ENTITY_SEQ", initialValue = 50000, allocationSize = 1)
+    @GeneratedValue(strategy=GenerationType.TABLE)
    private Long customerLeaseID;
 
    private String customerName;

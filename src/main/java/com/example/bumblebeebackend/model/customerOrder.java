@@ -8,8 +8,7 @@ import java.util.Date;
 public class customerOrder {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "my_entity_seq")
-    @SequenceGenerator(name = "my_entity_seq", sequenceName = "MY_ENTITY_SEQ", initialValue = 40000, allocationSize = 1)
+    @GeneratedValue(strategy=GenerationType.TABLE)
     private Long orderID;
 
     private String customerName;
