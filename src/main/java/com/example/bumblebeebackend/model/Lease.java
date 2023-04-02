@@ -3,6 +3,7 @@ package com.example.bumblebeebackend.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.util.Date;
 
 @Entity
 public class Lease {
@@ -13,7 +14,7 @@ public class Lease {
 
    private String customerName;
 
-   private String DOB;
+   private Date dateOfBirth;
 
    private Double loanBalance;
 
@@ -33,12 +34,12 @@ public class Lease {
         this.customerName = customerName;
     }
 
-    public String getDOB() {
-        return DOB;
+    public Date getDateOfBirth() {
+        return dateOfBirth;
     }
 
-    public void setDOB(String DOB) {
-        this.DOB = DOB;
+    public void setDateOfBirth(Date dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 
     public Double getLoanBalance() {
@@ -49,12 +50,12 @@ public class Lease {
         this.loanBalance = loanBalance;
     }
 
-    public String getInstallementPlan() {
-        return installementPlan;
+    public String getInstallmentPlan() {
+        return installmentPlan;
     }
 
-    public void setInstallementPlan(String installementPlan) {
-        this.installementPlan = installementPlan;
+    public void setInstallmentPlan(String installmentPlan) {
+        this.installmentPlan = installmentPlan;
     }
 
     public String getPlanStatus() {
@@ -65,7 +66,7 @@ public class Lease {
         this.planStatus = planStatus;
     }
 
-    private String installementPlan;
+    private String installmentPlan;
 
    private String planStatus;
 
