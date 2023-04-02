@@ -1,13 +1,28 @@
 package com.example.bumblebeebackend.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class Lease {
-    private Long customerID;
-    private String customerName;
 
-    private String DOB;
+    @Id
+    @GeneratedValue
+   private Long customerLeaseID;
 
-    public Long getCustomerID() {
-        return customerID;
+   private String customerName;
+
+   private String DOB;
+
+   private Double loanBalance;
+
+    public Long getCustomerLeaseID() {
+        return customerLeaseID;
+    }
+
+    public void setCustomerLeaseID(Long customerLeaseID) {
+        this.customerLeaseID = customerLeaseID;
     }
 
     public String getCustomerName() {
@@ -26,37 +41,32 @@ public class Lease {
         this.DOB = DOB;
     }
 
-    public Integer getLoanBalance() {
+    public Double getLoanBalance() {
         return loanBalance;
     }
 
-    public void setLoanBalance(Integer loanBalance) {
+    public void setLoanBalance(Double loanBalance) {
         this.loanBalance = loanBalance;
     }
 
-    public String getUsedPlan() {
-        return usedPlan;
+    public String getInstallementPlan() {
+        return installementPlan;
     }
 
-    public void setUsedPlan(String usedPlan) {
-        this.usedPlan = usedPlan;
+    public void setInstallementPlan(String installementPlan) {
+        this.installementPlan = installementPlan;
     }
 
-    public String getInstallmentPlan() {
-        return installmentPlan;
+    public String getPlanStatus() {
+        return planStatus;
     }
 
-    public void setInstallmentPlan(String installmentPlan) {
-        this.installmentPlan = installmentPlan;
+    public void setPlanStatus(String planStatus) {
+        this.planStatus = planStatus;
     }
 
-    public void setCustomerID(Long customerID) {
-        this.customerID = customerID;
-    }
+    private String installementPlan;
 
-    private Integer loanBalance;
+   private String planStatus;
 
-    private String usedPlan;
-
-    private String installmentPlan;
 }
