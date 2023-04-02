@@ -10,14 +10,14 @@ public class Admin {
 
     @Id
     @GeneratedValue
-    private Long id;
+    private Long adminid;
 
     public Long getId() {
-        return id;
+        return adminid;
     }
 
     public void setId(Long id) {
-        this.id = id;
+        this.adminid = id;
     }
 
     public String getEmail() {
