@@ -44,10 +44,10 @@ public class orderController {
     }
 
     @PutMapping("/order/{orderid}")
-    customerOrder updateOrder(@RequestBody customerOrder customerOrder,@PathVariable Long orderid){
+    customerOrder updateOrder(@RequestBody customerOrder newcustomerOrder,@PathVariable Long orderid){
         return customerOrderRepository.findById(orderid)
                 .map(order -> {
-                    order.setPaymentStatus(customerOrder.getPaymentStatus());
+                    order.setPaymentStatus(newcustomerOrder.getPaymentStatus());
                     return  customerOrderRepository.save(order);
                 }).orElseThrow(()->new OrderNotFoundException(orderid));
 
