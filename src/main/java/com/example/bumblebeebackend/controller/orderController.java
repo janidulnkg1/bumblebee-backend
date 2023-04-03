@@ -42,4 +42,14 @@ public class orderController {
         customerOrderRepository.deleteById(orderid);
         return "Order with id "+orderid+" has been deleted!";
     }
+
+    @PutMapping("/order/{orderid}")
+    customerOrder updateOrder(@RequestBody customerOrder customerOrder,@PathVariable Long orderid){
+        return customerOrderRepository.findById(orderid)
+                .map(order -> {
+                    order.setPaymentStatus(customerOrder.getPaymentStatus());
+                    return  customerOrderRepository.save(order);
+                }).orElseThrow(()->new OrderNotFoundException(orderid));
+
+    }
 }
