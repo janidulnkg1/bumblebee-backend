@@ -38,13 +38,13 @@ public class adminController {
         return adminRepository.findAll();
     }
 
-    @DeleteMapping("/admin/{id}")
-    String deleteAdmin(@PathVariable Long id){
-        if(!adminRepository.existsById(id)){
-            throw new AdminNotFoundException(id);
+    @DeleteMapping("/admin/{adminid}")
+    String deleteAdmin(@PathVariable Long adminid){
+        if(!adminRepository.existsById(adminid)){
+            throw new AdminNotFoundException(adminid);
         }
-        adminRepository.deleteById(id);
-        return "Admin with id "+id+" has been deleted!";
+        adminRepository.deleteById(adminid);
+        return "Admin with id "+adminid+" has been deleted!";
     }
 
 }

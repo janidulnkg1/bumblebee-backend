@@ -3,6 +3,7 @@ package com.example.bumblebeebackend.controller;
 import com.example.bumblebeebackend.exception.OrderNotFoundException;
 
 
+import com.example.bumblebeebackend.exception.UserNotFoundException;
 import com.example.bumblebeebackend.repository.CustomerOrderRepository;
 import com.example.bumblebeebackend.model.customerOrder;
 
@@ -31,5 +32,14 @@ public class orderController {
     List<customerOrder> getAllOrders() {
 
         return customerOrderRepository.findAll();
+    }
+
+    @DeleteMapping("/orders/{orderid}")
+    String deleteOrder(@PathVariable Long orderid){
+        if(!customerOrderRepository.existsById(orderid)){
+            throw new OrderNotFoundException(orderid);
+        }
+        customerOrderRepository.deleteById(orderid);
+        return "Order with id "+orderid+" has been deleted!";
     }
 }

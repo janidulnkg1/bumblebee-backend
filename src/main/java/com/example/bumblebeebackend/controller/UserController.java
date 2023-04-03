@@ -40,13 +40,13 @@ public class UserController {
         return userRepository.findAll();
     }
 
-    @DeleteMapping("/user/{id}")
-    String deleteUser(@PathVariable Long id){
-        if(!userRepository.existsById(id)){
-            throw new UserNotFoundException(id);
+    @DeleteMapping("/users/{userid}")
+    String deleteUser(@PathVariable Long userid){
+        if(!userRepository.existsById(userid)){
+            throw new UserNotFoundException(userid);
         }
-        userRepository.deleteById(id);
-        return "User with id "+id+" has been deleted!";
+        userRepository.deleteById(userid);
+        return "User with id "+userid+" has been deleted!";
     }
 
 }
