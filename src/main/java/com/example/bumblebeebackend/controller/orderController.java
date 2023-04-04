@@ -23,7 +23,7 @@ public class orderController {
     private CustomerOrderRepository customerOrderRepository;
 
     @PostMapping("/addorder")
-    public ResponseEntity<String> apply(@RequestBody customerOrder customerorder){
+    public ResponseEntity<String> addOrder(@RequestBody customerOrder customerorder){
         customerOrderRepository.save(customerorder);
         return ResponseEntity.ok("Order has been added successfully!");
     }
