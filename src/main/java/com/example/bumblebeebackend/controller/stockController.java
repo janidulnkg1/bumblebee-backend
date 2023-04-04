@@ -27,7 +27,7 @@ public class stockController {
     }
 
     @GetMapping("/stocks")
-    List<Stock> getAllLeases() {
+    List<Stock> getAllStocks() {
 
         return stockRepository.findAll();
     }
