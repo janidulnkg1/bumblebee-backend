@@ -19,7 +19,7 @@ public class leaseController {
     private LeaseRepository leaseRepository;
 
     @PostMapping("/lease_apply")
-    public ResponseEntity<String> apply(@RequestBody Lease lease){
+    public ResponseEntity<String> applyLease(@RequestBody Lease lease){
         leaseRepository.save(lease);
         return ResponseEntity.ok("Application for leasing-payment is successful!");
     }

@@ -21,7 +21,7 @@ public class stockController {
     private StockRepository stockRepository;
 
     @PostMapping("/stock_additem")
-    public ResponseEntity<String> apply(@RequestBody Stock stock){
+    public ResponseEntity<String> addStock(@RequestBody Stock stock){
         stockRepository.save(stock);
         return ResponseEntity.ok("Stock Item has been added successfully!");
     }
