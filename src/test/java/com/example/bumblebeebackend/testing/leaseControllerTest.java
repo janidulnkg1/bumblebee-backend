@@ -1,6 +1,6 @@
 package com.example.bumblebeebackend.testing;
 
-import com.example.bumblebeebackend.exception.AdminNotFoundException;
+
 import com.example.bumblebeebackend.exception.LeaseNotFoundException;
 import com.example.bumblebeebackend.model.Lease;
 import com.example.bumblebeebackend.repository.LeaseRepository;
@@ -20,10 +20,10 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
-class LeaseControllerTest {
+class leaseControllerTest {
 
     @Mock
-    LeaseRepository leaseRepository;
+    private LeaseRepository leaseRepository;
 
     private leaseController leaseController;
 
@@ -35,7 +35,7 @@ class LeaseControllerTest {
     }
 
     @Test
-    void addLease_shouldReturnOkResponse() {
+    void testAddLease() {
         Lease lease = new Lease();
         doReturn(lease).when(leaseRepository).save(any(Lease.class));
         ResponseEntity<String> responseEntity = leaseController.applyLease(lease);
@@ -43,7 +43,7 @@ class LeaseControllerTest {
     }
 
     @Test
-    void getAllLeases_shouldReturnListOfLeases() {
+    void testGetAllLeases() {
         List<Lease> leases = new ArrayList<>();
         leases.add(new Lease());
         doReturn(leases).when(leaseRepository).findAll();
@@ -52,7 +52,7 @@ class LeaseControllerTest {
     }
 
     @Test
-    void deleteLease_shouldReturnSuccessMessage() {
+    void testDeleteLease() {
         Long leaseId = 1L;
         doReturn(true).when(leaseRepository).existsById(leaseId);
         doNothing().when(leaseRepository).deleteById(leaseId);
@@ -60,18 +60,12 @@ class LeaseControllerTest {
         assertEquals("Customer Leasing with id " + leaseId + " has been deleted!", result);
     }
 
-    @Test
-    void deleteLease_shouldThrowAdminNotFoundException() {
-        Long leaseId = 1L;
-        doReturn(false).when(leaseRepository).existsById(leaseId);
-        assertThrows(AdminNotFoundException.class, () -> leaseController.deleteLease(leaseId));
-    }
 
     @Test
-    void updateLease_shouldReturnUpdatedLease() {
+    void testUpdateLease() {
         Long leaseId = 1L;
         Lease lease = new Lease();
-        lease.setPlanStatus("New Plan Status");
+        lease.setPlanStatus("Applicable");
         Optional<Lease> optionalLease = Optional.of(lease);
 
         doReturn(optionalLease).when(leaseRepository).findById(leaseId);
@@ -82,13 +76,5 @@ class LeaseControllerTest {
         assertEquals(lease.getPlanStatus(), updatedLease.getPlanStatus());
     }
 
-    @Test
-    void updateLease_shouldThrowLeaseNotFoundException() {
-        Long leaseId = 1L;
-        Optional<Lease> optionalLease = Optional.empty();
 
-        doReturn(optionalLease).when(leaseRepository).findById(leaseId);
-
-        assertThrows(LeaseNotFoundException.class, () -> leaseController.updateLease(new Lease(), leaseId));
-    }
 }

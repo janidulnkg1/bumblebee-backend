@@ -20,7 +20,7 @@ import java.util.List;
 public class orderController {
 
     @Autowired
-    private CustomerOrderRepository customerOrderRepository;
+    public CustomerOrderRepository customerOrderRepository;
 
     @PostMapping("/addorder")
     public ResponseEntity<String> addOrder(@RequestBody customerOrder customerorder){
@@ -29,13 +29,13 @@ public class orderController {
     }
 
     @GetMapping("/orders")
-    List<customerOrder> getAllOrders() {
+    public List<customerOrder> getAllOrders() {
 
         return customerOrderRepository.findAll();
     }
 
     @DeleteMapping("/orders/{orderid}")
-    String deleteOrder(@PathVariable Long orderid){
+    public String deleteOrder(@PathVariable Long orderid){
         if(!customerOrderRepository.existsById(orderid)){
             throw new OrderNotFoundException(orderid);
         }
@@ -44,7 +44,7 @@ public class orderController {
     }
 
     @PutMapping("/order/{orderid}")
-    customerOrder updateOrder(@RequestBody customerOrder newcustomerOrder,@PathVariable Long orderid){
+    public customerOrder updateOrder(@RequestBody customerOrder newcustomerOrder, @PathVariable Long orderid){
         return customerOrderRepository.findById(orderid)
                 .map(order -> {
                     order.setPaymentStatus(newcustomerOrder.getPaymentStatus());

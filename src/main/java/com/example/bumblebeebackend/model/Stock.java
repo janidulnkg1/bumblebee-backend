@@ -21,6 +21,13 @@ public class Stock {
 
     private Integer itemPrice;
 
+    public Stock(String s, int i) {
+    }
+
+    public Stock() {
+
+    }
+
     public Long getProductID() {
         return productID;
     }

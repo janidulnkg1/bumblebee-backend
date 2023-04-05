@@ -27,13 +27,13 @@ public class stockController {
     }
 
     @GetMapping("/stocks")
-    List<Stock> getAllStocks() {
+    public List<Stock> getAllStocks() {
 
         return stockRepository.findAll();
     }
 
     @DeleteMapping("/stock/{stockid}")
-    String deleteStock(@PathVariable Long stockid){
+    public String deleteStock(@PathVariable Long stockid){
         if(!stockRepository.existsById(stockid)){
             throw new StockNotFoundException(stockid);
         }
@@ -42,7 +42,7 @@ public class stockController {
     }
 
     @PutMapping("/stock/{stockid}")
-    Stock updateStock(@RequestBody Stock newstock, @PathVariable Long stockid){
+    public Stock updateStock(@RequestBody Stock newstock, @PathVariable Long stockid){
         return stockRepository.findById(stockid)
                 .map(stock -> {
                     stock.setItemQuantity(newstock.getItemQuantity());
