@@ -13,6 +13,13 @@ public class Admin {
 
     private String lastName;
 
+    public Admin(String mail, String password) {
+    }
+
+    public Admin() {
+
+    }
+
     public Long getAdminId() {
         return adminId;
     }

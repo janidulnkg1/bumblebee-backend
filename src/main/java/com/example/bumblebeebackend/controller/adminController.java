@@ -34,12 +34,12 @@ public class adminController {
     }
 
     @GetMapping("/admins")
-    List<Admin> getAllAdmins(){
+    public List<Admin> getAllAdmins(){
         return adminRepository.findAll();
     }
 
     @DeleteMapping("/admin/{adminid}")
-    String deleteAdmin(@PathVariable Long adminid){
+    public String deleteAdmin(@PathVariable Long adminid){
         if(!adminRepository.existsById(adminid)){
             throw new AdminNotFoundException(adminid);
         }
@@ -47,4 +47,11 @@ public class adminController {
         return "Admin with id "+adminid+" has been deleted!";
     }
 
+    public void setAdminRepository(AdminRepository adminRepository) {
+        this.adminRepository = adminRepository;
+    }
+
+    public AdminRepository getAdminRepository() {
+        return adminRepository;
+    }
 }
