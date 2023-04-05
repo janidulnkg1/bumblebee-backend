@@ -2,6 +2,8 @@ package com.example.bumblebeebackend.controller;
 
 import com.example.bumblebeebackend.exception.AdminNotFoundException;
 import com.example.bumblebeebackend.exception.LeaseNotFoundException;
+import com.example.bumblebeebackend.exception.OrderNotFoundException;
+import com.example.bumblebeebackend.model.customerOrder;
 import com.example.bumblebeebackend.repository.LeaseRepository;
 import com.example.bumblebeebackend.model.Lease;
 
@@ -29,13 +31,23 @@ public class leaseController {
         return leaseRepository.findAll();
     }
 
-    @DeleteMapping("/leases/{leaseid}")
+    @DeleteMapping("/lease/{leaseid}")
     String deleteLease(@PathVariable Long leaseid){
         if(!leaseRepository.existsById(leaseid)){
             throw new AdminNotFoundException(leaseid);
         }
         leaseRepository.deleteById(leaseid);
         return "Customer Leasing with id "+leaseid+" has been deleted!";
+    }
+
+    @PutMapping("/lease/{leaseid}")
+    Lease updateLease(@RequestBody Lease newlease, @PathVariable Long leaseid){
+        return leaseRepository.findById(leaseid)
+                .map(lease -> {
+                    lease.setPlanStatus(newlease.getPlanStatus());
+                    return  leaseRepository.save(lease);
+                }).orElseThrow(()->new LeaseNotFoundException(leaseid));
+
     }
 
 }
