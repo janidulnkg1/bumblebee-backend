@@ -19,7 +19,7 @@ import java.util.List;
 public class leaseController {
 
     @Autowired
-    private LeaseRepository leaseRepository;
+    public LeaseRepository leaseRepository;
 
     @PostMapping("/lease_apply")
     public ResponseEntity<String> applyLease(@RequestBody Lease lease){
@@ -28,12 +28,12 @@ public class leaseController {
     }
 
     @GetMapping("/leases")
-    List<Lease> getAllLeases() {
+    public List<Lease> getAllLeases() {
         return leaseRepository.findAll();
     }
 
     @DeleteMapping("/lease/{leaseid}")
-    String deleteLease(@PathVariable Long leaseid){
+    public String deleteLease(@PathVariable Long leaseid){
         if(!leaseRepository.existsById(leaseid)){
             throw new AdminNotFoundException(leaseid);
         }
@@ -42,7 +42,7 @@ public class leaseController {
     }
 
     @PutMapping("/lease/{leaseid}")
-    Lease updateLease(@RequestBody Lease newlease, @PathVariable Long leaseid){
+    public Lease updateLease(@RequestBody Lease newlease, @PathVariable Long leaseid){
         return leaseRepository.findById(leaseid)
                 .map(lease -> {
                     lease.setPlanStatus(newlease.getPlanStatus());
