@@ -3,6 +3,7 @@ package com.example.bumblebeebackend.controller;
 import com.example.bumblebeebackend.exception.AdminNotFoundException;
 import com.example.bumblebeebackend.exception.LeaseNotFoundException;
 import com.example.bumblebeebackend.exception.OrderNotFoundException;
+import com.example.bumblebeebackend.exception.UserNotFoundException;
 import com.example.bumblebeebackend.model.customerOrder;
 import com.example.bumblebeebackend.repository.LeaseRepository;
 import com.example.bumblebeebackend.model.Lease;
@@ -47,7 +48,9 @@ public class leaseController {
                     lease.setPlanStatus(newlease.getPlanStatus());
                     return  leaseRepository.save(lease);
                 }).orElseThrow(()->new LeaseNotFoundException(leaseid));
-
     }
+
+
+
 
 }

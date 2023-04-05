@@ -1,8 +1,8 @@
 package com.example.bumblebeebackend.controller;
 
+
 import com.example.bumblebeebackend.exception.StockNotFoundException;
 
-import com.example.bumblebeebackend.exception.UserNotFoundException;
 import com.example.bumblebeebackend.repository.StockRepository;
 import com.example.bumblebeebackend.model.Stock;
 
@@ -35,10 +35,19 @@ public class stockController {
     @DeleteMapping("/stocks/{stockid}")
     String deleteStock(@PathVariable Long stockid){
         if(!stockRepository.existsById(stockid)){
-            throw new UserNotFoundException(stockid);
+            throw new StockNotFoundException(stockid);
         }
         stockRepository.deleteById(stockid);
         return "Stock Item id "+stockid+" has been deleted!";
+    }
+
+    @PutMapping("/stock/{stockid}")
+    Stock updateStock(@RequestBody Stock newstock, @PathVariable Long stockid){
+        return stockRepository.findById(stockid)
+                .map(stock -> {
+                    stock.setItemQuantity(newstock.getItemQuantity());
+                    return  stockRepository.save(stock);
+                }).orElseThrow(()->new StockNotFoundException(stockid));
     }
 
 
