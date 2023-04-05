@@ -12,6 +12,13 @@ public class User {
 
     private String firstName;
 
+    public User(String mail, String password) {
+    }
+
+    public User() {
+
+    }
+
     public Long getUserid() {
         return userid;
     }

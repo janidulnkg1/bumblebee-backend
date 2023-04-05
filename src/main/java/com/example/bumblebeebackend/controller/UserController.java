@@ -13,7 +13,6 @@ import java.util.List;
 
 
 @RestController
-
 public class UserController {
 
     @Autowired
@@ -21,7 +20,7 @@ public class UserController {
 
     @PostMapping("/user_signup")
     public ResponseEntity<String> signup(@RequestBody User user) {
-        userRepository.save(user);
+         userRepository.save(user);
         return ResponseEntity.ok("User created successfully");
     }
 
@@ -36,12 +35,12 @@ public class UserController {
     }
 
     @GetMapping("/users")
-    List<User> getAllUsers(){
+    public List<User> getAllUsers(){
         return userRepository.findAll();
     }
 
     @DeleteMapping("/users/{userid}")
-    String deleteUser(@PathVariable Long userid){
+    public String deleteUser(@PathVariable Long userid){
         if(!userRepository.existsById(userid)){
             throw new UserNotFoundException(userid);
         }
@@ -49,4 +48,11 @@ public class UserController {
         return "User with id "+userid+" has been deleted!";
     }
 
+    public void setUserRepository(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
+    public UserRepository getUserRepository() {
+        return userRepository;
+    }
 }
