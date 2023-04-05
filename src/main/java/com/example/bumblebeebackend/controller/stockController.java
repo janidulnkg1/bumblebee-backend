@@ -32,7 +32,7 @@ public class stockController {
         return stockRepository.findAll();
     }
 
-    @DeleteMapping("/stocks/{stockid}")
+    @DeleteMapping("/stock/{stockid}")
     String deleteStock(@PathVariable Long stockid){
         if(!stockRepository.existsById(stockid)){
             throw new StockNotFoundException(stockid);
