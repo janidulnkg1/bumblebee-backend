@@ -12,6 +12,7 @@ public class BumblebeeBackendApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(BumblebeeBackendApplication.class, args);
+		System.out.println("BumblebeeBackend is Up and running!");
 	}
 
 
